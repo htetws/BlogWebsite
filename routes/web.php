@@ -49,4 +49,12 @@ Route::middleware('auth')->group(function () {
             Route::post('edit', [PostController::class, 'postEdit'])->name('admin#post#update');
         });
     });
+
+    //user detail route with auth
+    Route::get('p/{slug}', [PostViewController::class, 'detail'])->name('post#detail');
+    Route::get('blog', [PostViewController::class, 'blog'])->name('blog#all');
+
+    Route::post('ajax/count', [PostViewController::class, 'ViewCount'])->name('view#count');
+    Route::get('ajax/search', [PostViewController::class, 'searchKeyon'])->name('search#ajax');
+    Route::get('ajax/sorting', [PostViewController::class, 'sortMulti'])->name('sort#ajax');
 });

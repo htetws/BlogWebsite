@@ -70,10 +70,31 @@
                 width: 56%;
             }
         }
+
+        .navbar {
+            z-index: 10;
+        }
+
+        #loading {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        }
     </style>
 </head>
 
 <body>
+    <div id="loading">
+        <div class="spinner-border text-primary" role="status"></div>
+        <small class="ms-2 mt-3">Wait a second ...</small>
+    </div>
+
     <div class="container-fluid" style="height: 100vh;">
         <div class="row position-relative">
 
@@ -248,6 +269,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/js/toastr.js"></script>
 
     @yield('js')
+
+    <script>
+        $(window).on('load', function() {
+            $('#loading').hide();
+        })
+    </script>
 </body>
 
 
