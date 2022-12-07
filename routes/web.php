@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 // Authentication
 
+//socialite
+Route::get('login/google', [AuthController::class, 'redirectToGoogle'])->name('login#google');
+Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
+
+Route::get('login/github', [AuthController::class, 'redirectToGithub'])->name('login#github');
+Route::get('/auth/github/callback', [AuthController::class, 'handleGithubCallback']);
+
+//custom auth
 Route::middleware('authMiddleware')->group(function () {
     Route::get('login-page', [AuthController::class, 'login'])->name('login#page');
     Route::get('register-page', [AuthController::class, 'register'])->name('register#page');
@@ -16,8 +24,18 @@ Route::middleware('authMiddleware')->group(function () {
 
 //Post
 Route::get('/', [PostViewController::class, 'post'])->name('post#home');
+
+//Blog All Post
+Route::get('blog', [PostViewController::class, 'blog'])->name('blog#all');
+
+//filter Routes
 Route::get('category/{slug}', [PostViewController::class, 'categoryFilter'])->name('category#search');
 Route::get('tag/{slug}', [PostViewController::class, 'tagFilter'])->name('tag#search');
+Route::get('user/{name}', [PostViewController::class, 'userFilter'])->name('user#search');
+
+//ajax search and sorting
+Route::get('ajax/search', [PostViewController::class, 'searchKeyon'])->name('search#ajax');
+Route::get('ajax/sorting', [PostViewController::class, 'sortMulti'])->name('sort#ajax');
 
 Route::middleware('auth')->group(function () {
 
@@ -52,9 +70,20 @@ Route::middleware('auth')->group(function () {
 
     //user detail route with auth
     Route::get('p/{slug}', [PostViewController::class, 'detail'])->name('post#detail');
-    Route::get('blog', [PostViewController::class, 'blog'])->name('blog#all');
 
+    //bookmark pages
+    Route::get('bookmark', [PostViewController::class, 'bookmarkPage'])->name('bookmark#page');
+
+    //ajax methods
     Route::post('ajax/count', [PostViewController::class, 'ViewCount'])->name('view#count');
-    Route::get('ajax/search', [PostViewController::class, 'searchKeyon'])->name('search#ajax');
-    Route::get('ajax/sorting', [PostViewController::class, 'sortMulti'])->name('sort#ajax');
+
+    //Bookmark Ajax
+    Route::post('ajax/bookmark', [PostViewController::class, 'Bookmark'])->name('view#bookmark');
+    Route::get('ajax/search/bookmark', [PostViewController::class, 'BookmarkSearch'])->name('ajax#search#bookmark');
+    Route::get('ajax/sorting/bookmark', [PostViewController::class, 'BookmarkSorting'])->name('ajax#sorting#bookmark');
+    Route::get('ajax/clear/bookmark', [PostViewController::class, 'clearBookmark'])->name('ajax#clear');
+    Route::get('ajax/remove/bookmark', [PostViewController::class, 'removeBookmark'])->name('ajax#remove');
+
+    //Save Ajax
+    Route::post('ajax/love', [PostViewController::class, 'LovePost'])->name('ajax#love');
 });

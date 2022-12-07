@@ -1,5 +1,15 @@
 @extends('Layout.main')
 
+@section('title', "Filter")
+
+@section('bookmark')
+<div class="d-flex align-items-center">
+    <span>Bookmark : </span><span class="BookmarkData badge text-bg-danger active ms-2 rounded-circle mb-1">
+        {{ $bookmarks != null ? count($bookmarks) : '0' }}
+    </span>
+</div>
+@endsection
+
 @section('search')
 <li class="nav-item d-none d-lg-block">
     <form class="d-flex" role="search">
@@ -19,8 +29,8 @@
 
         <div class="col-12 col-md-12 col-xl-9">
             <div class="col-12">
-                <div class="rating d-flex justify-content-between">
-                    <div class="rating_text">Filter by {{ ucfirst(...(collect(request()->segments()[0]))) }} : ( {{ ucfirst(basename(request()->path())) }} ) </div>
+                <div class="rating d-flex justify-content-between align-items-center">
+                    <div class="rating_text mb-2"><small>Filter by {{ ucfirst(...(collect(request()->segments()[0]))) }} : ( {{ ucfirst(str_replace('%20',' ',basename(request()->path()))) }} )</small> </div>
                     <div class="col-md-3 d-flex justify-content-end">
                         <a href="{{ route('blog#all') }}" class="text-primary text-decoration-none d-flex align-items-center">
                             <h6 class="view_text">View All<i class="fa-solid fa-cubes ms-2"></i></h6>

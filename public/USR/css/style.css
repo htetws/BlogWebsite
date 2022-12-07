@@ -34,7 +34,7 @@
 }
 .navbar {
     position: sticky;
-    top: 0px;
+    top: -2px;
     z-index: 100;
 }
 
@@ -72,8 +72,9 @@
 .rating_text {
     font-family: "Kanit", sans-serif;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
+
 .rating .view {
     font-size: 1.3em;
 }
@@ -142,11 +143,26 @@
     top: 5rem;
 }
 
+.stickyDiv {
+    position: fixed;
+    top: 86px;
+    right: 0;
+}
+
+@media (max-width: 1200px) {
+    .stickyDiv {
+        position: relative;
+    }
+}
+
 @media (max-width: 450px) {
     .right-div {
         position: relative;
         right: 0;
         top: 0rem;
+    }
+    .rating_text {
+        font-size: 1.05rem;
     }
 }
 
@@ -289,14 +305,6 @@ button:focus {
     box-shadow: none !important;
 }
 
-.card {
-    transition: all 0.3s ease-in-out;
-}
-
-.card:hover {
-    transform: scale(1.03);
-}
-
 .hover {
     transition: all 0.5s ease-in-out;
 }
@@ -305,4 +313,67 @@ button:focus {
 }
 option {
     font-size: 1.05rem;
+}
+
+.bookmark {
+    position: absolute;
+    font-size: 1.8rem;
+    right: 15px;
+    bottom: 0;
+    z-index: 10;
+}
+
+#bookmarkBTN {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+}
+
+@media (max-width: 450px) {
+    .bookmark {
+        position: absolute;
+        font-size: 1.5rem;
+        right: 10px;
+        bottom: 20px;
+        z-index: 10;
+        color: white;
+    }
+    #bookmarkBTN {
+        cursor: pointer;
+        position: absolute;
+        top: 1px;
+        right: 6px;
+    }
+}
+
+#Remove {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    z-index: 20;
+    border-radius: 0px 0px 0px 100px;
+}
+.BTN {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    overflow: hidden;
+}
+.BTN a {
+    width: 50%;
+}
+.BTN button {
+    width: 50%;
+}
+@media (max-width: 300px) {
+    .BTN a {
+        width: 100%;
+    }
+    .BTN button {
+        width: 100%;
+    }
 }

@@ -2,6 +2,14 @@
 
 @section('title','Home')
 
+@section('bookmark')
+<div class="d-flex align-items-center">
+    <span>Bookmark : </span><span class="BookmarkData badge text-bg-danger active ms-2 rounded-circle mb-1">
+        {{ $bookmarks != null ? count($bookmarks) : '0' }}
+    </span>
+</div>
+@endsection
+
 @section('main-header')
 <div class="text-center container-fluid p-5 header_div">
     <p class="igris text-primary fw-bolder">igris's</p>
@@ -113,15 +121,16 @@
                     </div>
                 </div>
 
+                <!-- Trending -->
                 <h5><i class="fa-solid fa-fire me-2 mt-2 text-danger"></i>Trending</h5>
                 <div class="trending">
-                    @foreach ($posts as $trending)
-                    <a href="{{ route('post#detail',$trending->slug) }}" class="text-decoration-none text-dark">
+                    @foreach ($trending as $trend)
+                    <a href="{{ route('post#detail',$trend->posts->slug) }}" class="text-decoration-none text-dark">
                         <div class="d-flex justify-content-start align-items-center bg-light shadow-sm mb-3 rounded-1">
-                            <img src="{{ asset('storage/'.$trending->image) }}" style="width: 60px;height:60px;object-fit:cover" class="rounded-2">
+                            <img src="{{ asset('storage/'.$trend->posts->image) }}" style="width: 60px;height:60px;object-fit:cover" class="rounded-2">
                             <div class="ms-3">
-                                <h6 class="mt-3">{{ $trending->title }}</h6>
-                                <small>{!! Str::words($trending->description,4,' ...') !!}</small>
+                                <h6 class="mt-3">{{ $trend->posts->title }}</h6>
+                                <small>{!! Str::words($trend->posts->description,4,' ...') !!}</small>
                             </div>
                         </div>
                     </a>

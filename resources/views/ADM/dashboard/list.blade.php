@@ -1,8 +1,25 @@
 @extends('Layout.dashboard')
 
+@section('title','Admin | Dashboard')
+
+@section('css')
+<style>
+    .dashboardImage {
+        width: 70%;
+        margin-top: 4rem;
+    }
+</style>
+@endsection
+
 @section('content')
-<div class="col-12 px-3 px-md-0 col-md-8 offset-md-2 mt-5">
-    <p>dashboard page are in maintainance , coming soon</p>
+<div class="col-12 px-3 px-md-0 col-md-8 offset-md-2 mt-5 text-center">
+
+    <div class="">
+        <img src="{{ asset('undraw_maintenance_re_59vn.svg') }}" class="dashboardImage">
+    </div>
+
+    <h4 class="display-6 mt-5">Dashboard page under maintenance.</h4>
+
     <!-- <table class="table table-hover">
         <thead class="bg-dark text-white-50">
             <tr>

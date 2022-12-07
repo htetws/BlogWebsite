@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
-use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -109,6 +110,7 @@ class PostController extends Controller
     {
         return [
             'title' => $request->postTitle,
+            'user_id' => Auth::user()->id,
             'slug' => Str::slug($request->postTitle),
             'description' => $request->postDesc,
             'category_id' => $request->categoryId,
