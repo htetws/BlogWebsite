@@ -113,28 +113,28 @@
                 </div>
             </div>
 
-            <h5><i class="fa-solid fa-fire me-2 mt-2 text-danger"></i>Related .</h5>
-            <div class="trending">
-                @foreach ($rels as $rel)
-                <a href="{{ route('post#detail',$rel->slug) }}" class="text-decoration-none text-dark">
-                    <div class="d-flex justify-content-start align-items-center bg-light shadow-sm mb-3 rounded-1">
-                        <img src="{{ asset('storage/'.$rel->image) }}" style="width: 60px;height:60px;object-fit:cover" class="rounded-2">
-                        <div class="ms-3">
-                            <h6 class="mt-3">{{ $rel->title }}</h6>
-                            <small>{!! Str::words($rel->description,4,' ...') !!}</small>
+            <h6><i class="fa-regular fa-folder-open text-secondary me-2"></i></i> Related .</h5>
+                <div class="trending">
+                    @foreach ($rels as $rel)
+                    <a href="{{ route('post#detail',$rel->slug) }}" class="text-decoration-none text-dark">
+                        <div class="d-flex justify-content-start align-items-center bg-light shadow-sm mb-3 rounded-1">
+                            <img src="{{ asset('storage/'.$rel->image) }}" style="width: 60px;height:60px;object-fit:cover" class="rounded-2">
+                            <div class="ms-3">
+                                <h6 class="mt-3">{{ $rel->title }}</h6>
+                                <small>{!! Str::words($rel->description,4,' ...') !!}</small>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                @endforeach
-            </div>
+                    </a>
+                    @endforeach
+                </div>
 
-            <hr class="text-secondary mt-4">
-            <div class="overflow-auto text-center my-4 tag_overflow">
-                <i class="fa solid fa-tags"></i> :
-                @foreach ($tags as $tag)
-                <a href="{{ route('tag#search',$tag->slug) }}" class="badge text-bg-light shadow-sm me-1 text-decoration-none mb-1"><span>{{ $tag->name }}</span></a>
-                @endforeach
-            </div>
+                <hr class="text-secondary mt-4">
+                <div class="overflow-auto text-center my-4 tag_overflow">
+                    <i class="fa solid fa-tags"></i> :
+                    @foreach ($tags as $tag)
+                    <a href="{{ route('tag#search',$tag->slug) }}" class="badge text-bg-light shadow-sm me-1 text-decoration-none mb-1"><span>{{ $tag->name }}</span></a>
+                    @endforeach
+                </div>
         </div>
     </div>
 </div>

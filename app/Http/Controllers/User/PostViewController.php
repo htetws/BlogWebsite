@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Termwind\Components\Raw;
 
 class PostViewController extends Controller
 {
@@ -203,10 +204,10 @@ class PostViewController extends Controller
             $data = Post::select('posts.*', 'categories.name as catname')
                 ->leftJoin('categories', 'posts.category_id', 'categories.id')
                 ->orderBy('view_count', 'desc')->get();
-            // } elseif ($request->value == 'trending') {
-            //     $data = Post::select('posts.*', 'loves.*')
-            //         ->leftJoin('loves', 'posts.id', 'loves.post_id')->get();
-            //     return $data;
+        } elseif ($request->value == 'trending') {
+            $data = Love::join('posts', 'love.post_id', 'posts.id')
+                ->select('love.*', 'posts.*', 'categories.name as catname', DB::raw('count(love.post_id) as total'))->LeftJoin('categories', 'posts.category_id', 'categories.id')
+                ->groupBy('love.post_id')->orderBy('total', 'desc')->get();
         } elseif ($request->value == 'new') {
             $data = Post::select('posts.*', 'categories.name as catname')
                 ->leftJoin('categories', 'posts.category_id', 'categories.id')

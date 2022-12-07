@@ -208,6 +208,7 @@
             $.get("{{ route('sort#ajax') }}", {
                 'value': $value
             }, function(data) {
+                console.log(data);
                 $div = '';
                 $M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                 if (data.length != 0) {
